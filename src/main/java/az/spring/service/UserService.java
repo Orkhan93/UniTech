@@ -1,5 +1,6 @@
 package az.spring.service;
 
+import az.spring.constant.UniTech;
 import az.spring.entity.User;
 import az.spring.entity.VerificationToken;
 import az.spring.exception.*;
@@ -8,13 +9,16 @@ import az.spring.mapper.UserMapper;
 import az.spring.repository.UserRepository;
 import az.spring.repository.VerificationRepository;
 import az.spring.request.ChangePasswordRequest;
+import az.spring.request.ForgotPasswordRequest;
 import az.spring.request.UserLoginRequest;
 import az.spring.request.UserRegistration;
 import az.spring.response.UserResponse;
+import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
 
 @Slf4j
 @Service
@@ -85,6 +90,15 @@ public class UserService {
         }
         author.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
         userRepository.save(author);
+    }
+
+    public ResponseEntity<String> forgotPassword(ForgotPasswordRequest forgotPasswordRequest) throws MessagingException {
+        Optional<User> user = userRepository.findByEmailIgnoreCase(forgotPasswordRequest.getEmail());
+        if (user.isPresent()) {
+            emailService.forgetMail(user.get().getEmail(), UniTech.BY_UNITECH, user.get().getPassword());
+            return ResponseEntity.status(OK).body(UniTech.CHECK_EMAIL);
+        } else
+            return ResponseEntity.status(BAD_REQUEST).body(ErrorMessage.USER_NOT_FOUND);
     }
 
     @Transactional

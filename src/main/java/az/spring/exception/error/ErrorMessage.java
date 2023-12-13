@@ -8,5 +8,6 @@ public class ErrorMessage {
 
     public static final String INCORRECT_PASSWORD = "The password you entered is incorrect: ";
     public static final String NOT_MATCHES = "The passwords you entered do not match: ";
+    public static final String EMAIL_NOT_FOUND = "Email not found : ";
 
 }

@@ -32,5 +32,4 @@ encryption:
 email:
   from: orkhanmustafaev93@gmail.com
 app:
-  backend:
-    url: http://unitech.com
+  url: http://unitech.com
