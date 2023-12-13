@@ -1,0 +1,12 @@
+server:
+  port: 8090
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/unitech
+    password: 123
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
