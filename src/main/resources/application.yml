@@ -10,3 +10,27 @@ spring:
     password: 123
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: orkhanmustafaev93@gmail.com
+    password: mwtgyixdvnytbiku
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+jwt:
+  algorithm:
+    key: SuperSecureSecretKey
+  issuer: eCommerce
+  expiryInSeconds: 604800
+encryption:
+  salt:
+    rounds: 10
+email:
+  from: orkhanmustafaev93@gmail.com
+app:
+  backend:
+    url: http://unitech.com
