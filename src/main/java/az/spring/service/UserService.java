@@ -45,7 +45,7 @@ public class UserService {
     public UserResponse registerUser(UserRegistration userRegistration) throws UserAlreadyExistsException {
         if (userRepository.findByEmailIgnoreCase(userRegistration.getEmail()).isPresent() ||
                 userRepository.findByPinEqualsIgnoreCase(userRegistration.getPin()).isPresent()) {
-            throw new UserAlreadyExistsException(BAD_REQUEST.name(), ErrorMessage.ALREADY_EXISTS);
+            throw new UserAlreadyExistsException(BAD_REQUEST.name(), ErrorMessage.USER_ALREADY_EXISTS);
         }
         User user = userMapper.requestToModel(userRegistration);
         user.setPassword(encryptionService.encryptPassword(userRegistration.getPassword()));

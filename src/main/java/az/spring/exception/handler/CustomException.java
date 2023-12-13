@@ -54,4 +54,18 @@ public class CustomException {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
+    @ExceptionHandler(AccountAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ProblemDetail handlerAccountAlreadyExistsException(AccountAlreadyExistsException exception) {
+        log.error("handlerAccountAlreadyExistsException {}", exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
+    @ExceptionHandler(AccountNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ProblemDetail handlerAccountNotFoundException(AccountNotFoundException exception) {
+        log.error("handlerAccountNotFoundException {}", exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
 }
