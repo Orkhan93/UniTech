@@ -38,6 +38,10 @@ public class User implements UserDetails {
     private Boolean emailVerified = false;
 
     @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Account> accountList = new ArrayList<>();
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id desc")
     private List<VerificationToken> verificationTokens = new ArrayList<>();
