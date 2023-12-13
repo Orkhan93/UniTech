@@ -1,15 +1,12 @@
 package az.spring.controller;
 
-import az.spring.constraint.validation.Password;
-import az.spring.exception.EmailFailureException;
-import az.spring.exception.UserNotVerifiedException;
 import az.spring.request.ChangePasswordRequest;
+import az.spring.request.ForgotPasswordRequest;
 import az.spring.request.UserLoginRequest;
 import az.spring.request.UserRegistration;
-import az.spring.response.UserJwtResponse;
-import az.spring.response.UserLoginResponse;
 import az.spring.response.UserResponse;
 import az.spring.service.UserService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,6 +33,12 @@ public class AuthenticationController {
     @PutMapping("/change-password/{userId}")
     public void changePassword(@RequestBody ChangePasswordRequest request, @PathVariable(name = "userId") Long userId) {
         userService.changePassword(request, userId);
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordRequest forgotPasswordRequest)
+            throws MessagingException {
+        return userService.forgotPassword(forgotPasswordRequest);
     }
 
     @PostMapping("/verify")

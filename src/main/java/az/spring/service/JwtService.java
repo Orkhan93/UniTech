@@ -61,9 +61,4 @@ public class JwtService {
         return jwt.getClaim(USERNAME_KEY).asString();
     }
 
-    public String getResetPasswordEmail(String token) {
-        DecodedJWT jwt = JWT.require(algorithm).withIssuer(issuer).build().verify(token);
-        return jwt.getClaim(RESET_PASSWORD_EMAIL_KEY).asString();
-    }
-
 }
