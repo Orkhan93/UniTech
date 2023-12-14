@@ -1,7 +1,9 @@
 package az.spring.service;
 
+import az.spring.entity.Currency;
 import az.spring.exception.IllegalArgumentException;
 import az.spring.exception.error.ErrorMessage;
+import az.spring.repository.CurrencyRepository;
 import az.spring.response.CurrencyResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class CurrencyService {
     private String url;
 
     private final RestTemplate restTemplate;
+    private final CurrencyRepository currencyRepository;
 
     public CurrencyResponse allCurrencyRates() {
         return restTemplate.getForObject(url, CurrencyResponse.class);
@@ -34,6 +38,11 @@ public class CurrencyService {
         if (sourceRate == 0 || targetRate == 0) {
             throw new IllegalArgumentException(HttpStatus.BAD_REQUEST.name(), ErrorMessage.INVALID_PAIR);
         }
+        Currency currency = new Currency();
+        currency.setCurrencyType(sourceCurrency);
+        currency.setRate(targetRate / sourceRate);
+        currency.setUpdatedDate(LocalDateTime.now());
+        currencyRepository.save(currency);
         return targetRate / sourceRate;
     }
 

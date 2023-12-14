@@ -1,11 +1,11 @@
 package az.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
@@ -22,9 +22,11 @@ public class Currency {
     private String currencyType;
 
     @Column(name = "rate")
-    private BigDecimal rate;
+    private Double rate;
 
-    @Column(name = "updatedTimestamp", nullable = false)
-    private LocalDate updatedTimestamp;
+    @Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd-mm-yyyy'T'HH:mm")
+    private LocalDateTime updatedDate;
 
 }
