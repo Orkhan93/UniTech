@@ -30,4 +30,10 @@ public class Account {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Override
+    public String toString() {
+        return "Account{id=%d, accountNumber='%s', balance=%s, status=%s}"
+                .formatted(id, accountNumber, balance, status);
+    }
+
 }

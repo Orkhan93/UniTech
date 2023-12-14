@@ -43,6 +43,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public UserResponse registerUser(UserRegistration userRegistration) throws UserAlreadyExistsException {
+        log.info("Inside userRegistration {}", userRegistration);
         if (userRepository.findByEmailIgnoreCase(userRegistration.getEmail()).isPresent() ||
                 userRepository.findByPinEqualsIgnoreCase(userRegistration.getPin()).isPresent()) {
             throw new UserAlreadyExistsException(BAD_REQUEST.name(), ErrorMessage.USER_ALREADY_EXISTS);
@@ -52,10 +53,12 @@ public class UserService {
 
         VerificationToken verificationToken = createVerificationToken(user);
         emailService.sendVerificationEmail(verificationToken);
+        log.info("Inside register {}", user);
         return userMapper.modelToResponse(userRepository.save(user));
     }
 
     public String loginUser(UserLoginRequest userLoginRequest) throws UserNotVerifiedException, EmailFailureException {
+        log.info("Inside userLoginRequest {}", userLoginRequest);
         Optional<User> optionalUser = userRepository.findByPinEqualsIgnoreCase(userLoginRequest.getPin());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -80,19 +83,22 @@ public class UserService {
     }
 
     public void changePassword(ChangePasswordRequest changePasswordRequest, Long userId) {
-        User author = userRepository.findById(userId).orElseThrow(
+        log.info("Inside changePassword {}", changePasswordRequest);
+        User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(HttpStatus.NOT_FOUND.name(), ErrorMessage.USER_NOT_FOUND));
-        if (!encryptionService.verifyPassword(changePasswordRequest.getOldPassword(), author.getPassword())) {
+        if (!encryptionService.verifyPassword(changePasswordRequest.getOldPassword(), user.getPassword())) {
             throw new IncorrectPasswordException(BAD_REQUEST.name(), ErrorMessage.INCORRECT_PASSWORD);
         }
         if (!changePasswordRequest.getNewPassword().equals(changePasswordRequest.getConfirmPassword())) {
             throw new IncorrectPasswordException(BAD_REQUEST.name(), ErrorMessage.NOT_MATCHES);
         }
-        author.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
-        userRepository.save(author);
+        user.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
+        log.info("Inside savedUser {}", user);
+        userRepository.save(user);
     }
 
     public ResponseEntity<String> forgotPassword(ForgotPasswordRequest forgotPasswordRequest) throws MessagingException {
+        log.info("Inside forgotPassword {}", forgotPasswordRequest);
         Optional<User> user = userRepository.findByEmailIgnoreCase(forgotPasswordRequest.getEmail());
         if (user.isPresent()) {
             emailService.forgetMail(user.get().getEmail(), UniTech.BY_UNITECH, user.get().getPassword());
@@ -118,11 +124,13 @@ public class UserService {
     }
 
     private VerificationToken createVerificationToken(User user) {
+        log.info("Inside createVerificationToken {}", user);
         VerificationToken verificationToken = new VerificationToken();
         verificationToken.setToken(jwtService.generateVerificationJwt(user));
         verificationToken.setCreatedTimestamp(new Timestamp(System.currentTimeMillis()));
         verificationToken.setUser(user);
         user.getVerificationTokens().add(verificationToken);
+        log.info("Inside verificationToken {}", verificationToken);
         return verificationToken;
     }
 

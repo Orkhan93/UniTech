@@ -31,6 +31,7 @@ public class AccountService {
     private final AccountMapper accountMapper;
 
     public AccountResponse createAccount(Long userId, AccountRequest request) {
+        log.info("Inside accountRequest {}", request);
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(HttpStatus.NOT_FOUND.name(), ErrorMessage.USER_NOT_FOUND));
         Optional<Account> optionalAccount = accountRepository.findByAccountNumber(request.getAccountNumber());
@@ -40,10 +41,12 @@ public class AccountService {
         Account account = accountMapper.fromRequestToModel(request);
         account.setUser(user);
         account.setStatus(true);
+        log.info("Inside createAccount {}", account);
         return accountMapper.fromModelToResponse(accountRepository.save(account));
     }
 
     public AccountResponse changeStatusAccount(Long userId, AccountRequest request) {
+        log.info("Inside accountRequest {}", request);
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException(HttpStatus.NOT_FOUND.name(), ErrorMessage.USER_NOT_FOUND));
         Optional<Account> optionalAccount = accountRepository.findByAccountNumber(request.getAccountNumber());
@@ -52,6 +55,7 @@ public class AccountService {
         }
         Account account = optionalAccount.get();
         account.setStatus(false);
+        log.info("Inside changeStatusAccount {}", account);
         return accountMapper.fromModelToResponse(accountRepository.save(account));
     }
 
@@ -61,6 +65,7 @@ public class AccountService {
         List<AccountWrapper> accountResponses = accountRepository.allActiveAccountByUserId(user.getId());
         AccountResponseList list = new AccountResponseList();
         list.setAccountResponseList(accountResponses);
+        log.info("Inside allActiveAccounts {}", list);
         return list;
     }
 
