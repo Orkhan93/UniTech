@@ -1,0 +1,65 @@
+2023-12-14T13:42:44.345+04:00  INFO 1492 --- [main] az.spring.UnitechApplication             : Starting UnitechApplication using Java 17.0.8 with PID 1492 (C:\Users\User\Desktop\unitech\target\classes started by User in C:\Users\User\Desktop\unitech)
+2023-12-14T13:42:44.350+04:00  INFO 1492 --- [main] az.spring.UnitechApplication             : No active profile set, falling back to 1 default profile: "default"
+2023-12-14T13:42:45.101+04:00  INFO 1492 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-14T13:42:45.178+04:00  INFO 1492 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 3 JPA repository interfaces.
+2023-12-14T13:42:45.661+04:00  INFO 1492 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-12-14T13:42:45.674+04:00  INFO 1492 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-14T13:42:45.674+04:00  INFO 1492 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2023-12-14T13:42:45.880+04:00  INFO 1492 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-14T13:42:45.881+04:00  INFO 1492 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1462 ms
+2023-12-14T13:42:46.590+04:00  INFO 1492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-14T13:42:46.881+04:00  INFO 1492 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55053f81
+2023-12-14T13:42:46.883+04:00  INFO 1492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-14T13:42:46.930+04:00  INFO 1492 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-12-14T13:42:47.925+04:00  INFO 1492 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-14T13:42:48.648+04:00  WARN 1492 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-14T13:42:48.675+04:00  WARN 1492 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 806845b5-0662-4185-8789-968ad51f8f30
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-12-14T13:42:48.946+04:00  INFO 1492 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7bc46dde, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@409b1740, org.springframework.security.web.context.SecurityContextHolderFilter@74f54f8e, org.springframework.security.web.header.HeaderWriterFilter@79e3f444, org.springframework.security.web.authentication.logout.LogoutFilter@40b7e68c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59b8a801, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5aa026e9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@32dc895e, org.springframework.security.web.access.ExceptionTranslationFilter@2b33e616, az.spring.security.JwtRequestFilter@6e069ca9, org.springframework.security.web.access.intercept.AuthorizationFilter@42af2977]
+2023-12-14T13:42:49.165+04:00  INFO 1492 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-12-14T13:42:49.175+04:00  INFO 1492 --- [main] az.spring.UnitechApplication             : Started UnitechApplication in 5.419 seconds (process running for 6.135)
+2023-12-14T13:42:58.009+04:00  INFO 1492 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-14T13:42:58.402+04:00  INFO 1492 --- [http-nio-8090-exec-1] az.spring.service.AccountService         : Inside allActiveAccounts az.spring.response.AccountResponseList@199afefc
+2023-12-14T13:43:27.067+04:00  INFO 1492 --- [http-nio-8090-exec-2] az.spring.service.TransactionService     : Inside moneyTransfer az.spring.request.TransferRequest@f45077d
+2023-12-14T13:43:27.091+04:00  INFO 1492 --- [http-nio-8090-exec-2] az.spring.service.TransactionService     : Inside fromAccount az.spring.entity.Account@595913c2
+2023-12-14T13:43:27.099+04:00  INFO 1492 --- [http-nio-8090-exec-2] az.spring.service.TransactionService     : Inside toAccount az.spring.entity.Account@206c624f
+2023-12-14T13:43:30.690+04:00  INFO 1492 --- [http-nio-8090-exec-4] az.spring.service.AccountService         : Inside allActiveAccounts az.spring.response.AccountResponseList@59069609
+2023-12-14T13:43:48.502+04:00  INFO 1492 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-14T13:43:48.505+04:00  INFO 1492 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-14T13:43:48.513+04:00  INFO 1492 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-14T13:45:02.587+04:00  INFO 6484 --- [main] az.spring.UnitechApplication             : Starting UnitechApplication using Java 17.0.8 with PID 6484 (C:\Users\User\Desktop\unitech\target\classes started by User in C:\Users\User\Desktop\unitech)
+2023-12-14T13:45:02.590+04:00  INFO 6484 --- [main] az.spring.UnitechApplication             : No active profile set, falling back to 1 default profile: "default"
+2023-12-14T13:45:03.285+04:00  INFO 6484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-14T13:45:03.429+04:00  INFO 6484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 3 JPA repository interfaces.
+2023-12-14T13:45:04.016+04:00  INFO 6484 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2023-12-14T13:45:04.029+04:00  INFO 6484 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-14T13:45:04.029+04:00  INFO 6484 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2023-12-14T13:45:04.145+04:00  INFO 6484 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-14T13:45:04.146+04:00  INFO 6484 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1503 ms
+2023-12-14T13:45:04.598+04:00  INFO 6484 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-14T13:45:04.912+04:00  INFO 6484 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3193e21d
+2023-12-14T13:45:04.913+04:00  INFO 6484 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-14T13:45:04.972+04:00  INFO 6484 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-12-14T13:45:06.001+04:00  INFO 6484 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-14T13:45:06.717+04:00  WARN 6484 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-14T13:45:06.753+04:00  WARN 6484 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 4fb330a4-99b7-40e3-9a80-a63282ee85e5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-12-14T13:45:07.125+04:00  INFO 6484 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@455591ad, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@13157620, org.springframework.security.web.context.SecurityContextHolderFilter@46c47690, org.springframework.security.web.header.HeaderWriterFilter@59b8a801, org.springframework.security.web.authentication.logout.LogoutFilter@2dacad1d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@499f9003, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@324ee3ca, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62a78446, org.springframework.security.web.access.ExceptionTranslationFilter@74f54f8e, az.spring.security.JwtRequestFilter@2f69d246, org.springframework.security.web.access.intercept.AuthorizationFilter@32dc895e]
+2023-12-14T13:45:07.382+04:00  INFO 6484 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2023-12-14T13:45:07.391+04:00  INFO 6484 --- [main] az.spring.UnitechApplication             : Started UnitechApplication in 5.39 seconds (process running for 6.086)
+2023-12-14T13:45:10.874+04:00  INFO 6484 --- [http-nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-14T13:45:11.150+04:00  INFO 6484 --- [http-nio-8090-exec-1] az.spring.service.AccountService         : Inside allActiveAccounts az.spring.response.AccountResponseList@61a9e402
+2023-12-14T13:45:46.886+04:00  INFO 6484 --- [http-nio-8090-exec-3] az.spring.service.TransactionService     : Inside moneyTransfer az.spring.request.TransferRequest@5528b90d
+2023-12-14T13:45:46.918+04:00  INFO 6484 --- [http-nio-8090-exec-3] az.spring.service.TransactionService     : Inside fromAccount Account{id=3, accountNumber='15975369', balance=590.00, status=true}
+2023-12-14T13:45:46.918+04:00  INFO 6484 --- [http-nio-8090-exec-3] az.spring.service.TransactionService     : Inside toAccount Account{id=6, accountNumber='159753B7', balance=300.00, status=true}
+2023-12-14T13:46:01.360+04:00  INFO 6484 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-14T13:46:01.362+04:00  INFO 6484 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-14T13:46:01.372+04:00  INFO 6484 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

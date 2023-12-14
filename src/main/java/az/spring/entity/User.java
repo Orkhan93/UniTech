@@ -71,4 +71,10 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "User{id=%d, email='%s', username='%s', pin='%s', password='%s', emailVerified=%s}"
+                .formatted(id, email, username, pin, password, emailVerified);
+    }
+
 }

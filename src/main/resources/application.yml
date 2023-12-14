@@ -33,3 +33,10 @@ email:
   from: orkhanmustafaev93@gmail.com
 app:
   url: http://unitech.com
+logging:
+  file:
+    name: logs/uni-tech.log
+  level:
+    az.spring.uni-tech: DEBUG
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
