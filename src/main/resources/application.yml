@@ -40,3 +40,7 @@ logging:
     az.spring.uni-tech: DEBUG
     org.springframework.web: ERROR
     org.hibernate: ERROR
+currency:
+  api:
+    key: 6cf4a0dbeddf7c5903e365f1
+    url: https://open.er-api.com/v6/latest
