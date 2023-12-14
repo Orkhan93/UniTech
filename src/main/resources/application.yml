@@ -24,7 +24,7 @@ spring:
 jwt:
   algorithm:
     key: SuperSecureSecretKey
-  issuer: eCommerce
+  issuer: unitech
   expiryInSeconds: 604800
 encryption:
   salt:
