@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -52,6 +53,15 @@ public class CurrencyService {
             throw new IllegalArgumentException(HttpStatus.BAD_REQUEST.name(), ErrorMessage.INVALID_PAIR);
         }
         return amount * exchangeRate;
+    }
+
+    public void getRecentCurrentData() {
+        LocalDateTime now = LocalDateTime.now().minusMinutes(1);
+        List<Currency> reminders = currencyRepository.findByUpdatedDateBefore(now);
+        for (Currency currency : reminders) {
+            currency.setUpdatedDate(LocalDateTime.now());
+            currencyRepository.save(currency);
+        }
     }
 
 }
