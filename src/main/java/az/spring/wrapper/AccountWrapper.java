@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -14,6 +16,6 @@ public class AccountWrapper {
     private Long id;
     private String accountNumber;
     private Boolean status;
-    private Double balance;
+    private BigDecimal balance;
 
 }

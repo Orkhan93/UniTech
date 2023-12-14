@@ -1,6 +1,7 @@
 package az.spring.exception.handler;
 
 import az.spring.exception.*;
+import az.spring.exception.IllegalArgumentException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -65,6 +66,13 @@ public class CustomException {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ProblemDetail handlerAccountNotFoundException(AccountNotFoundException exception) {
         log.error("handlerAccountNotFoundException {}", exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ProblemDetail handlerIllegalArgumentException(IllegalArgumentException exception) {
+        log.error("handlerIllegalArgumentException {}", exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
