@@ -16,5 +16,7 @@ public class ErrorMessage {
     public static final String DISABLE_ACCOUNT = "Account is disable : ";
     public static final String INSUFFICIENT_FUNDS = "There are insufficient funds in the account : ";
     public static final String SAME_ACCOUNT = "You cannot transfer money to the same account : ";
+    public static final String INVALID_DATA = "Invalid date or data not found : ";
+    public static final String INVALID_PAIR = "Invalid currency pair or date : ";
 
 }
