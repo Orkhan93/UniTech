@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -22,6 +20,7 @@ public class TransactionService {
 
     @Transactional
     public void moneyTransfer(TransferRequest transferRequest) {
+        log.info("Inside moneyTransfer {}", transferRequest);
         Account fromAccount = accountRepository.findByAccountNumber(transferRequest.getFromAccountNumber()).orElseThrow(
                 () -> new IllegalArgumentException(HttpStatus.NOT_FOUND.name(), ErrorMessage.PAYER_NOT_FOUND));
         Account toAccount = accountRepository.findByAccountNumber(transferRequest.getToAccountNumber()).orElseThrow(
@@ -29,7 +28,7 @@ public class TransactionService {
         if (!fromAccount.getStatus() || !toAccount.getStatus()) {
             throw new IllegalArgumentException(HttpStatus.BAD_REQUEST.name(), ErrorMessage.DISABLE_ACCOUNT);
         }
-        if (fromAccount.getAccountNumber().equals(toAccount.getAccountNumber())){
+        if (fromAccount.getAccountNumber().equals(toAccount.getAccountNumber())) {
             throw new IllegalArgumentException(HttpStatus.CONFLICT.name(), ErrorMessage.SAME_ACCOUNT);
         }
         if (fromAccount.getBalance().compareTo(transferRequest.getAmount()) < 0) {
@@ -37,7 +36,9 @@ public class TransactionService {
         }
         fromAccount.setBalance(fromAccount.getBalance().subtract(transferRequest.getAmount()));
         toAccount.setBalance(toAccount.getBalance().add(transferRequest.getAmount()));
+        log.info("Inside fromAccount {}", fromAccount);
         accountRepository.save(fromAccount);
+        log.info("Inside toAccount {}", toAccount);
         accountRepository.save(toAccount);
     }
 
