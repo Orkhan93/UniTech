@@ -1,10 +1,13 @@
 package az.spring.exception.handler;
 
+import az.spring.constraint.validation.Password;
 import az.spring.exception.*;
 import az.spring.exception.IllegalArgumentException;
+import az.spring.exception.error.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -74,6 +77,20 @@ public class CustomException {
     public ProblemDetail handlerIllegalArgumentException(IllegalArgumentException exception) {
         log.error("handlerIllegalArgumentException {}", exception.getMessage());
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleArgumentNotValidException(MethodArgumentNotValidException exception) {
+
+        String fieldName = exception.getBindingResult().getFieldError().getField();
+        String message = exception.getBindingResult().getFieldError().getDefaultMessage();
+
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(HttpStatus.BAD_REQUEST.name());
+        errorResponse.setMessage(fieldName + message);
+        log.error("Validation error : {}", exception.getMessage());
+        return errorResponse;
     }
 
 }
