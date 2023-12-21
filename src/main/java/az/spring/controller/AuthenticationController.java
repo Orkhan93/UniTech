@@ -38,7 +38,7 @@ public class AuthenticationController {
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordRequest forgotPasswordRequest)
             throws MessagingException {
-        return userService.forgotPassword(forgotPasswordRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(userService.forgotPassword(forgotPasswordRequest));
     }
 
     @PostMapping("/verify")

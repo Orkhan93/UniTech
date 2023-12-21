@@ -97,14 +97,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public ResponseEntity<String> forgotPassword(ForgotPasswordRequest forgotPasswordRequest) throws MessagingException {
+    public String forgotPassword(ForgotPasswordRequest forgotPasswordRequest) throws MessagingException {
         log.info("Inside forgotPassword {}", forgotPasswordRequest);
         Optional<User> user = userRepository.findByEmailIgnoreCase(forgotPasswordRequest.getEmail());
         if (user.isPresent()) {
             emailService.forgetMail(user.get().getEmail(), UniTech.BY_UNITECH, user.get().getPassword());
-            return ResponseEntity.status(OK).body(UniTech.CHECK_EMAIL);
+            return UniTech.CHECK_EMAIL;
         } else
-            return ResponseEntity.status(BAD_REQUEST).body(ErrorMessage.USER_NOT_FOUND);
+            return ErrorMessage.USER_NOT_FOUND;
     }
 
     @Transactional
